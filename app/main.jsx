@@ -14,7 +14,7 @@ render (
       <div>
         <Navbar />
         <Route exact path='/' component={AllCampuses} />
-        <Route path='/students' component={AllStudents} />
+        <Route exact path='/students' component={AllStudents} />
       </div>
     </Router>
   </Provider>,

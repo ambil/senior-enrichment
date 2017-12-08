@@ -7,7 +7,7 @@ const REMOVE_CAMPUS = 'REMOVE_CAMPUS'
 
 //Action Creators
 const createGetCampusAction = campus => ({ type: GET_CAMPUS, campus })
-const createAddCampusAction = campus => ({ type: ADD_CAMPUS, campus});
+const createAddCampusAction = campus => ({ type: ADD_CAMPUS, campus });
 const createUpdateCampusAction = campus => ({ type: UPDATE_CAMPUS, campus });
 const createRemoveCampusAction = campus => ({ type: REMOVE_CAMPUS, campus })
 

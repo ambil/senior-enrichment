@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router';
+import { NavLink } from 'react-router-dom'
 import Navbar from '../Navbar'
 import { connect } from 'react-redux'
 import store from '../../store'
@@ -13,7 +14,10 @@ export function AllCampuses (props) {
     <div>
       { props.campuses.map((campus) => {
         return(
-          <img src={campus.imageUrl} key={campus.id}></img>
+          <div key={campus.id}>
+            <h2>{campus.name}</h2>
+            <img src={campus.imageUrl}></img>
+          </div>
         )
         })
       }
@@ -23,6 +27,7 @@ export function AllCampuses (props) {
 
 const mapState = state => {
   return {
+    students: state.students,
     campuses: state.campuses
   }
 }

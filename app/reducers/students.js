@@ -8,22 +8,33 @@ const REMOVE_STUDENT = 'REMOVE_STUDENT'
 
 //Action Creators
 const createGetStudentAction = student => ({ type: GET_STUDENT, student })
-const createAddStudentAction = student => ({ type: ADD_STUDENT, student});
+const createAddStudentAction = student => ({ type: ADD_STUDENT, student });
 const createUpdateStudentAction = student => ({ type: UPDATE_STUDENT, student });
 const createRemoveStudentAction = student => ({ type: REMOVE_STUDENT, student })
 
-//Dispatcher
-export function getStudent () {
+//Dispatchers
+export function getStudents () {
   return function thunk (dispatch) {
     return axios.get('/api/students')
       .then(res => res.data)
       .then((students) => {
         dispatch(createGetStudentAction(students))
       })
-      .catch(err => console.err(err))
+      .catch(err => console.error(err))
   }
 }
 
+export function addStudent (student) {
+  return function thunk (dispatch) {
+    return axios.post('/api/students', student)
+      .then(res => res.data)
+      .then(newStudent => {
+        const action = createAddStudentAction(newStudent)
+        dispatch(action)
+      })
+      .catch(err => console.error(err))
+  }
+}
 
 //Reducer
 export default function reducer (students = [], action) {
@@ -32,8 +43,8 @@ export default function reducer (students = [], action) {
     case GET_STUDENT:
       return action.student;
 
-    // case ADD_STUDENT:
-    //   return action.student;
+    case ADD_STUDENT:
+      return [...students, action.student];
 
     // case UPDATE_STUDENT:
     //   return student.map(student => (action.student.id === student.id ? action.student : student

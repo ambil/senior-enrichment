@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom'
-import AllCampuses from './Campuses/AllCampuses'
+import { Route, NavLink } from 'react-router-dom'
 
 export default function Navbar () {
   return(
     <div>
-      <button>Home</button>
-      <button>Students</button>
+      <NavLink to='/'>Home </NavLink>
+      <NavLink to='/students'>Students</NavLink>
+      <NavLink to='/addstudent'>Add Student</NavLink>
     </div>
   )
 }
