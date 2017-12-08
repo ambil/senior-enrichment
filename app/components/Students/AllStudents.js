@@ -31,6 +31,7 @@ export function AllStudents (props) {
           }
         </tbody>
       </table>
+      <NavLink to='/addstudent'><button>Add Student</button></NavLink>
     </div>
   )
 }

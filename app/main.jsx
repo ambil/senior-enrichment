@@ -7,6 +7,7 @@ import store from './store'
 import Navbar from './components/Navbar'
 import AllCampuses from './components/Campuses/AllCampuses'
 import AllStudents from './components/Students/AllStudents'
+import NewStudent from './components/Students/NewStudent'
 
 render (
   <Provider store={store}>
@@ -15,6 +16,7 @@ render (
         <Navbar />
         <Route exact path='/' component={AllCampuses} />
         <Route exact path='/students' component={AllStudents} />
+        <Route exact path='/addstudent' component={NewStudent} />
       </div>
     </Router>
   </Provider>,

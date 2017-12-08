@@ -16,7 +16,7 @@ export function AllCampuses (props) {
         return(
           <div key={campus.id}>
             <h2>{campus.name}</h2>
-            <img src={campus.imageUrl}></img>
+            <NavLink to={`/${campus.name}`}><img src={campus.imageUrl}></img></NavLink>
           </div>
         )
         })
