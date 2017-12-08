@@ -5,7 +5,11 @@ const Students = require('../db/models/Students')
 const Campuses = require('../db/models/Campuses')
 
 apiRouter.get('/campuses', (req, res) => {
-	Campuses.findAll()
+	Campuses.findAll({
+		include: [
+			{ model: Students, as: 'CurrentStudents'}
+		]
+	})
 	.then(campus => res.json(campus))
 	.catch(err => console.error(err))
 })
@@ -17,7 +21,11 @@ apiRouter.get('/campuses/:id', (req, res) => {
 })
 
 apiRouter.get('/students', (req, res) => {
-	Students.findAll()
+	Students.findAll({
+		include: [
+			{ model: Campuses }
+		]
+	})
 	.then(student => res.json(student))
 	.catch(err => console.error(err))
 })
