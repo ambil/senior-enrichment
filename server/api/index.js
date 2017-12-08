@@ -28,8 +28,10 @@ apiRouter.get('/students/:id', (req, res) => {
 	.catch(err => console.error(err))
 })
 
-apiRouter.post('/students', (req, res, next) => {
-	Students
+apiRouter.post('/campuses', (req, res, next) => {
+	Campuses.findOrCreate(req.body)
+	.then(campus => res.json(campus))
+	.catch(next)
 })
 
 module.exports = apiRouter;

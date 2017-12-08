@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom'
+import AllCampuses from './Campuses/AllCampuses'
 
-export default class Navbar extends Component {
-  render() {
-    return(
-      <button>Test</button>
-    )
-  }
+export default function Navbar () {
+  return(
+    <div>
+      <button>Home</button>
+      <button>Students</button>
+    </div>
+  )
 }
