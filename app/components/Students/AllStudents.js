@@ -16,16 +16,15 @@ export function AllStudents (props) {
       <table>
         <tbody>
           <tr>
-            <th>Student ID</th>
             <th>Name</th>
             <th>Campus</th>
           </tr>
           { props.students.map((student) => {
             return (
               <tr key={student.id}>
-                <td>{student.id}</td>
                 <td>{student.fullName}</td>
-                <td>{student.campusId}</td>
+                <td>{student.campus.name}</td>
+                <td><button>delete</button></td>
               </tr>
             )})
           }
@@ -45,7 +44,7 @@ const mapState = state => {
 }
 
 const mapDispatch = dispatch => {
-  return dispatch(getStudents())
+    dispatch(getStudents())
 }
 
 export default connect(mapState, mapDispatch)(AllStudents);

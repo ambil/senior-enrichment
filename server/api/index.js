@@ -37,7 +37,7 @@ apiRouter.get('/students/:id', (req, res) => {
 })
 
 apiRouter.post('/students', (req, res, next) => {
-	Students.findOrCreate(req.body)
+	Students.create(req.body)
 	.then(student => res.json(student))
 	.catch(next)
 })

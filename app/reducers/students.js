@@ -8,7 +8,7 @@ const REMOVE_STUDENT = 'REMOVE_STUDENT'
 
 //Action Creators
 const createGetStudentAction = student => ({ type: GET_STUDENT, student })
-const createAddStudentAction = student => ({ type: ADD_STUDENT, student });
+export const createAddStudentAction = student => ({ type: ADD_STUDENT, student });
 const createUpdateStudentAction = student => ({ type: UPDATE_STUDENT, student });
 const createRemoveStudentAction = student => ({ type: REMOVE_STUDENT, student })
 
@@ -29,7 +29,7 @@ export function addStudent (student) {
     return axios.post('/api/students', student)
       .then(res => res.data)
       .then(newStudent => {
-        const action = createAddStudentAction(newStudent)
+        const action = createGetStudentAction(newStudent)
         dispatch(action)
       })
       .catch(err => console.error(err))
