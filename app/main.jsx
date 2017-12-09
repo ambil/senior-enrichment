@@ -10,6 +10,7 @@ import AllStudents from './components/Students/AllStudents'
 import NewStudent from './components/Students/NewStudent'
 import CampusDetail from './components/Campuses/CampusDetail'
 import StudentDetail from './components/Students/StudentDetail'
+import EditStudents from './components/Students/EditStudents'
 
 render (
   <Provider store={store}>
@@ -19,7 +20,8 @@ render (
         <Route exact path='/' component={AllCampuses} />
         <Route exact path='/students' component={AllStudents} />
         <Route exact path='/addstudent' component={NewStudent} />
-        <Route path='/:name' component={CampusDetail} />
+        <Route exact path='/:name' component={CampusDetail} />
+        <Route path='/:name/students' component={EditStudents} />
         <Route path='/student/:id' component={StudentDetail} />
       </div>
     </Router>

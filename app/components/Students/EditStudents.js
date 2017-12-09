@@ -6,20 +6,42 @@ import { getCampuses } from '../../reducers/campuses'
 
 export function EditStudents (props) {
 
-  const { students, campuses } = props
-  const currentStudentId = +props.match.params.id
+  const { submit, students, campuses } = props
+  const currentCampus = props.match.params.name
 
   return(
     <div>
-     {students.map(student => {
-       if(student.id === currentStudentId){
+     {campuses.map(campus => {
+       if(campus.name === currentCampus){
          return(
-           <div key={student.id}>
-           <h1>{student.fullName}</h1>
-           <p>{student.email}</p>
-           <p>{student.gpa}</p>
-           </div>
-         )}
+         campus.CurrentStudents.map(student => {
+           return(
+             <div>
+             <h1>{student.fullName}</h1>
+             <form>
+               <label>
+                First:
+                <input type="text" name="firstName" placeholder={student.firstName} />
+               </label>
+               <label>
+                Last:
+                <input type="text" name="lastName" placeholder={student.lastName} />
+               </label>
+               <label>
+                 email:
+                 <input type="text" name="email" placeholder={student.email} />
+               </label>
+               <label>
+                 GPA:
+                 <input type="number" name="gpa" placeholder={student.gpa} />
+               </label>
+               <button>submit changes</button>
+             </form>
+             </div>
+           )
+         })
+         )
+       }
      })}
     </div>
   )

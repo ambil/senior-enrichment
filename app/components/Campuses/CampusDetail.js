@@ -27,7 +27,7 @@ export function CampusDetail (props) {
            })
            }
            </ul>
-           <Link to='/students'><button type="submit">Edit Students</button></Link>
+           <Link to={`/${campus.name}/students`}><button type="submit">Edit Students</button></Link>
            </div>
          )}
      })}
