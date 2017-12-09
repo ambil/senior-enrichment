@@ -15,8 +15,7 @@ export function AllCampuses (props) {
       { props.campuses.map((campus) => {
         return(
           <div key={campus.id}>
-            <h2>{campus.name}</h2>
-            <NavLink to={`/${campus.name}/${campus.id}`}><img src={campus.imageUrl}></img></NavLink>
+            <NavLink to={`/campus/${campus.id}`}><h2>{campus.name}</h2></NavLink>
           </div>
         )
         })
@@ -33,7 +32,9 @@ const mapState = state => {
 }
 
 const mapDispatch = dispatch => {
-  return dispatch(getCampuses())
+  return {
+    getCampuses: dispatch(getCampuses())
+  }
 }
 
 export default connect(mapState, mapDispatch)(AllCampuses);

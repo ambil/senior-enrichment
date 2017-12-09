@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Navbar from '../Navbar'
 import { connect } from 'react-redux'
 import store from '../../store'
 import { getStudents, addStudent} from '../../reducers/students'
+import { getCampuses } from '../../reducers/campuses'
 
 export function AllStudents (props) {
 
   const { students, campuses } = props;
+
 
   return (
     <div>
@@ -19,22 +21,21 @@ export function AllStudents (props) {
             <th>Name</th>
             <th>Campus</th>
           </tr>
-          { props.students.map((student) => {
+          { students.map((student) => {
             return (
               <tr key={student.id}>
                 <td>{student.fullName}</td>
                 <td>{student.campus.name}</td>
-                <td><button>delete</button></td>
+                <td><Link to={`/student/${student.id}`}><button>edit</button></Link></td>
               </tr>
             )})
           }
         </tbody>
       </table>
-      <NavLink to='/addstudent'><button>Add Student</button></NavLink>
+      <Link to='/addstudent'><button>Add Student</button></Link>
     </div>
   )
 }
-
 
 const mapState = state => {
   return {
@@ -44,7 +45,10 @@ const mapState = state => {
 }
 
 const mapDispatch = dispatch => {
-    dispatch(getStudents())
+  return {
+    getStudents: dispatch(getStudents()),
+    getCampuses: dispatch(getCampuses())
+  }
 }
 
 export default connect(mapState, mapDispatch)(AllStudents);

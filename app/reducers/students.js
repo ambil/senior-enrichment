@@ -29,7 +29,7 @@ export function addStudent (student) {
     return axios.post('/api/students', student)
       .then(res => res.data)
       .then(newStudent => {
-        const action = createGetStudentAction(newStudent)
+        const action = createAddStudentAction(newStudent)
         dispatch(action)
       })
       .catch(err => console.error(err))

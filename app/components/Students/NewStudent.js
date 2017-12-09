@@ -1,37 +1,50 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { addStudent } from '../../reducers/students'
+import { addStudent, getStudents } from '../../reducers/students'
+import { getCampuses } from '../../reducers/campuses'
 
 export function NewStudentEntry(props) {
 
-    const { submit, students } = props
+  const { submit, students, campuses } = props
 
-    return (
+  return (
+    <div>
       <form onSubmit={submit}>
-      <label>
-        First:
-    <input
-          type="text"
-          name="firstName"
-          placeholder="Your name here"
-          required />
-      </label>
-      <label>
-        Last:
+        <label>
+          First:
         <input
-          type="text"
-          name="lastName"
-          placeholder="Your name here"
-          required />
-      </label>
-      <button type="submit">Enter</button>
-    </form>
-    )
+            type="text"
+            name="firstName"
+            placeholder="Your name here"
+            required />
+        </label>
+        <label>
+          Last:
+        <input
+            type="text"
+            name="lastName"
+            placeholder="Your name here"
+            required />
+        </label>
+        <label>Campus:
+        <select name="currentCampus">
+          {campuses.map(campus => {
+            return (
+              <option value={campus.id} key={campus.id}>{campus.name}</option>
+            )
+          })}
+        </select>
+        </label>
+        <button type="submit">Enter</button>
+      </form>
+    </div>
+  )
 }
 
 const mapState = state => {
   return {
-    students: state.students
+    students: state.students,
+    campuses: state.campuses
   }
 }
 
@@ -41,10 +54,13 @@ const mapDispatch = dispatch => {
       e.preventDefault()
       const student = {
         firstName: e.target.firstName.value,
-        lastName: e.target.lastName.value
+        lastName: e.target.lastName.value,
+        campusId: e.target.currentCampus.value
       }
       dispatch(addStudent(student))
-    }
+      history.push('/students')
+    },
+    getCampuses: dispatch(getCampuses())
   }
 }
 
