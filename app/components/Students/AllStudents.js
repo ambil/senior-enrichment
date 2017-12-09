@@ -9,8 +9,7 @@ import { getCampuses } from '../../reducers/campuses'
 
 export function AllStudents (props) {
 
-  const { students, campuses } = props;
-
+  const { getCampuses, students, campuses } = props;
 
   return (
     <div>
@@ -46,8 +45,8 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    getStudents: dispatch(getStudents()),
-    getCampuses: dispatch(getCampuses())
+    getCampuses: dispatch(getCampuses()),
+    getStudents: dispatch(getStudents())
   }
 }
 

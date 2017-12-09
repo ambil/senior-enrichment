@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { getStudents } from '../../reducers/students'
 import { getCampuses } from '../../reducers/campuses'
 
-export function StudentDetail (props) {
+export function EditStudents (props) {
 
   const { students, campuses } = props
   const currentStudentId = +props.match.params.id
@@ -40,4 +40,4 @@ const mapDispatch = dispatch => {
   }
 }
 
-export default connect(mapState, mapDispatch)(StudentDetail)
+export default connect(mapState, mapDispatch)(EditStudents)

@@ -19,7 +19,7 @@ render (
         <Route exact path='/' component={AllCampuses} />
         <Route exact path='/students' component={AllStudents} />
         <Route exact path='/addstudent' component={NewStudent} />
-        <Route path='/campus/:id' component={CampusDetail} />
+        <Route path='/:name' component={CampusDetail} />
         <Route path='/student/:id' component={StudentDetail} />
       </div>
     </Router>

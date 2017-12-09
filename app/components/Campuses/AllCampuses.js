@@ -15,7 +15,7 @@ export function AllCampuses (props) {
       { props.campuses.map((campus) => {
         return(
           <div key={campus.id}>
-            <NavLink to={`/campus/${campus.id}`}><h2>{campus.name}</h2></NavLink>
+            <NavLink to={`/${campus.name}`}><h2>{campus.name}</h2></NavLink>
           </div>
         )
         })

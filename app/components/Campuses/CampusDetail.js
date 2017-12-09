@@ -7,18 +7,18 @@ import { getCampuses } from '../../reducers/campuses'
 export function CampusDetail (props) {
 
   const { students, campuses } = props
-  const currentCampusId = Number(props.location.pathname.slice(-1))
+  const currentCampus = props.match.params.name
 
   return(
     <div>
      {campuses.map(campus => {
-       if(campus.id === currentCampusId){
+       if(campus.name === currentCampus){
          return(
            <div key={campus.id}>
            <h1>{campus.name}</h1>
            <img src={campus.imageUrl} />
            <p>{campus.description}</p>
-           <h2>Our Students:</h2>
+           <h2>Current Students:</h2>
            <ul>
            {campus.CurrentStudents.map(currentStudent => {
              return (
