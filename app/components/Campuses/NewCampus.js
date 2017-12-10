@@ -1,28 +1,28 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { addStudent, getStudents } from '../../reducers/students'
-import { getCampuses } from '../../reducers/campuses'
+import { getStudents } from '../../reducers/students'
+import { getCampuses, addCampus } from '../../reducers/campuses'
 
-export function NewStudentEntry(props) {
+export function NewCampusEntry(props) {
 
-  const { listStudents, submit, students, campuses } = props
+  const { submit, students, campuses } = props
 
   return (
     <form onSubmit={submit}>
       <label>
         Campus Name:
-        <input type="text" label="name" placeholder="Enter New Campus" required />
+        <input type="text" name="name" placeholder="Enter New Campus" required />
       </label>
       <label>
         Description:
-        <input type="text" label="description" placeholder="What's the place like?" required />
+        <input type="text" name="description" placeholder="What's the place like?" required />
       </label>
-      <label>
+      {/* <label>
         Image URL:
-        <input type="text" label="imageUrl" placeholder="image url" />
-      </label>
-      <button>Submit</button>
+        <input type="text" name="imageUrl" placeholder="image url" />
+      </label> */}
+      <button type="submit">Submit</button>
     </form>
   )
 }
@@ -38,16 +38,14 @@ const mapDispatch = dispatch => {
   return {
     submit: function (e) {
       e.preventDefault()
-      const student = {
-        firstName: e.target.firstName.value,
-        lastName: e.target.lastName.value,
-        campusId: e.target.currentCampus.value
+      const campus = {
+        name: e.target.name.value,
+        description: e.target.description.value
       }
-      dispatch(addStudent(student))
+      dispatch(addCampus(campus))
     },
     getStudents: dispatch(getStudents()),
-    getCampuses: dispatch(getCampuses())
   }
 }
 
-export default connect(mapState, mapDispatch)(NewStudentEntry)
+export default connect(mapState, mapDispatch)(NewCampusEntry)

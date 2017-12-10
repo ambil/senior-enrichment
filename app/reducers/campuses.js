@@ -24,6 +24,18 @@ export function getCampuses () {
   }
 }
 
+export function addCampus (campus) {
+  return function thunk (dispatch) {
+    return axios.post('/api/campuses', campus)
+      .then(res => res.data)
+      .then(newCampus => {
+        const action = createAddCampusAction(newCampus)
+        dispatch(action)
+      })
+      .catch(err => console.error(err))
+  }
+}
+
 //Reducer
 export default function reducer (campuses = [], action) {
   switch (action.type) {
@@ -31,8 +43,8 @@ export default function reducer (campuses = [], action) {
     case GET_CAMPUS:
       return action.campus;
 
-    // case ADD_CAMPUS:
-    //   return action.campus;
+    case ADD_CAMPUS:
+      return [...campuses, action.campus];
 
     // case UPDATE_CAMPUS:
     //   return campus.map(campus => (action.campus.id === campus.id ? action.campus : campus

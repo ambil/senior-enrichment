@@ -43,7 +43,7 @@ apiRouter.post('/students', (req, res, next) => {
 })
 
 apiRouter.post('/campuses', (req, res, next) => {
-	Campuses.findOrCreate(req.body)
+	Campuses.create(req.body)
 	.then(campus => res.json(campus))
 	.catch(next)
 })
