@@ -24,7 +24,6 @@ export function StudentDetail (props) {
      })}
     </div>
   )
-
 }
 
 const mapState = state => {

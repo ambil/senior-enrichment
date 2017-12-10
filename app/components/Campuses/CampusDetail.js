@@ -18,6 +18,7 @@ export function CampusDetail (props) {
            <h1>{campus.name}</h1>
            <img src={campus.imageUrl} />
            <p>{campus.description}</p>
+           <Link to={`/${campus.name}/students`}><button type="submit">Edit Students</button></Link>
            <h2>Current Students:</h2>
            <table>
              <tbody>
@@ -38,7 +39,7 @@ export function CampusDetail (props) {
            }
            </tbody>
            </table>
-           <Link to={`/${campus.name}/students`}><button type="submit">Edit Students</button></Link>
+
            </div>
          )}
      })}

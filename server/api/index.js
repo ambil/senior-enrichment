@@ -48,4 +48,12 @@ apiRouter.post('/campuses', (req, res, next) => {
 	.catch(next)
 })
 
+apiRouter.delete('/campuses/:id', function(req, res, next) {
+	const id = req.params.id
+
+	Campuses.destroy({where: {id}})
+		.then(() => res.state(204).end())
+		.catch(next)
+})
+
 module.exports = apiRouter;

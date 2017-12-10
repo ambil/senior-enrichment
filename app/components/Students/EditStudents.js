@@ -46,6 +46,8 @@ export function EditStudents(props) {
                           )
                         })}
                       </select>
+                      <label for="delete">delete:</label>
+                      <input type="checkbox" name="delete" value={campus.id} />
                     </label>
                     <button>submit changes</button>
                   </form>

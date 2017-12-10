@@ -32,8 +32,6 @@ export function AllStudents (props) {
           }
         </tbody>
       </table>
-      <h3>Add New Student:</h3>
-      <NewStudent />
     </div>
   )
 }
