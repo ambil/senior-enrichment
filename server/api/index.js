@@ -27,6 +27,14 @@ apiRouter.post('/campuses', (req, res, next) => {
 	.catch(next)
 })
 
+apiRouter.put('/campuses/:id', (req, res, next)=> {
+	const campusId = req.params.studentId
+
+	Students.findById(campusId)
+		.then(campus => campus.update(req.body))
+		.catch(next)
+})
+
 apiRouter.delete('/campuses/:id', function(req, res, next) {
 	const id = req.params.id
 
@@ -60,6 +68,14 @@ apiRouter.post('/students', (req, res, next) => {
 	Students.create(req.body)
 	.then(student => res.json(student))
 	.catch(next)
+})
+
+apiRouter.put('/students/:id', (req, res, next) => {
+	const studentId = req.params.studentId
+
+	Students.findById(studentId)
+		.then(student => student.update(req.body))
+		.catch(next)
 })
 
 apiRouter.delete('/students/:id', function(req, res, next) {

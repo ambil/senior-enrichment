@@ -52,9 +52,9 @@ export default function reducer (campuses = [], action) {
     case ADD_CAMPUS:
       return [...campuses, action.campus];
 
-    // case UPDATE_CAMPUS:
-    //   return campus.map(campus => (action.campus.id === campus.id ? action.campus : campus
-    //   ));
+    case UPDATE_CAMPUS:
+      return campus.map(campus => (action.campus.id === campus.id ? action.campus : campus
+      ));
 
     case REMOVE_CAMPUS:
       return campuses.filter(campus => campus.id !== action.id);

@@ -6,10 +6,9 @@ import { getCampuses } from '../../reducers/campuses'
 
 export function NewStudentEntry(props) {
 
-  const { listStudents, submit, students, campuses } = props
+  const { submit, students, campuses } = props
 
   return (
-    <div>
       <form onSubmit={submit}>
         <label>
           First:
@@ -38,7 +37,6 @@ export function NewStudentEntry(props) {
         </label>
         <button type="submit">Enter</button>
       </form>
-    </div>
   )
 }
 

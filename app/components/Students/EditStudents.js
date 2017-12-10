@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getStudents, removeStudent } from '../../reducers/students'
-import { getCampuses } from '../../reducers/campuses'
+import { getCampuses, updateStudent } from '../../reducers/campuses'
 import NewStudent from './NewStudent'
 
 export function EditStudents(props) {
@@ -23,26 +23,26 @@ export function EditStudents(props) {
                   <form onSubmit={submit}>
                     <label>
                       First:
-                <input type="text" name="firstName" placeholder={student.firstName} />
+                <input type="text" name="firstName" placeholder={student.firstName} defaultValue={student.firstName} />
                     </label>
                     <label>
                       Last:
-                <input type="text" name="lastName" placeholder={student.lastName} />
+                <input type="text" name="lastName" placeholder={student.lastName} defaultValue={student.lastName} />
                     </label>
                     <label>
                       email:
-                 <input type="email" name="email" placeholder={student.email} />
+                 <input type="email" name="email" placeholder={student.email} defaultValue={student.email} />
                     </label>
                     <label>
                       GPA:
-                 <input type="number" min="0" max="4" name="gpa" placeholder={student.gpa} />
+                 <input type="number" min="0" max="4" name="gpa" placeholder={student.gpa} defaultValue={student.gpa} />
                     </label>
                     <label>
                       Campus:
                  <select name="currentCampus">
                         {campuses.map(campus => {
                           return (
-                            <option value={campus.id} key={campus.id} defaultValue={campus.name}>{campus.name}</option>
+                            <option value={campus.id} key={campus.id}>{campus.name}</option>
                           )
                         })}
                       </select>
@@ -77,6 +77,13 @@ const mapDispatch = dispatch => {
   return {
     submit: function (e) {
       e.preventDefault()
+      const studentInfo = {
+        firstName: e.target.firstName.value,
+        lastName: e.target.lastName.value,
+        email: e.target.email.value,
+        gpa: e.target.gpa.value,
+        campus: e.target.currentCampus.value
+      }
       dispatch(removeStudent(e.target.delete.value))
     },
     getStudents: dispatch(getStudents()),
