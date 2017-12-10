@@ -22,7 +22,7 @@ render (
         <Route exact path='/addstudent' component={NewStudent} />
         <Route exact path='/:name' component={CampusDetail} />
         <Route path='/:name/students' component={EditStudents} />
-        <Route path='/student/:id' component={StudentDetail} />
+        <Route path='/:id' component={StudentDetail} />
       </div>
     </Router>
   </Provider>,

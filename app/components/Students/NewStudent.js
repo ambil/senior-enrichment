@@ -16,7 +16,7 @@ export function NewStudentEntry(props) {
         <input
             type="text"
             name="firstName"
-            placeholder="Your name here"
+            placeholder="Student First Name"
             required />
         </label>
         <label>
@@ -24,7 +24,7 @@ export function NewStudentEntry(props) {
         <input
             type="text"
             name="lastName"
-            placeholder="Your name here"
+            placeholder="Student Last Name"
             required />
         </label>
         <label>Campus:

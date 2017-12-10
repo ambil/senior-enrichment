@@ -6,10 +6,11 @@ import { connect } from 'react-redux'
 import store from '../../store'
 import { getStudents, addStudent} from '../../reducers/students'
 import { getCampuses } from '../../reducers/campuses'
+import NewStudent from './NewStudent'
 
 export function AllStudents (props) {
 
-  const { getCampuses, students, campuses } = props;
+  const { students, campuses } = props;
 
   return (
     <div>
@@ -25,13 +26,14 @@ export function AllStudents (props) {
               <tr key={student.id}>
                 <td>{student.fullName}</td>
                 <td>{student.campus.name}</td>
-                <td><Link to={`/student/${student.id}`}><button>edit</button></Link></td>
+                <td><Link to={`/${student.id}`}><button>view profile</button></Link></td>
               </tr>
             )})
           }
         </tbody>
       </table>
-      <Link to='/addstudent'><button>Add Student</button></Link>
+      <h3>Add New Student:</h3>
+      <NewStudent />
     </div>
   )
 }

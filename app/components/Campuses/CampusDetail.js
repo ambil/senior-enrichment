@@ -19,14 +19,25 @@ export function CampusDetail (props) {
            <img src={campus.imageUrl} />
            <p>{campus.description}</p>
            <h2>Current Students:</h2>
-           <ul>
-           {campus.CurrentStudents.map(currentStudent => {
+           <table>
+             <tbody>
+               <tr>
+                 <th>Student</th>
+                 <th>GPA</th>
+                 <th>Contact</th>
+               </tr>
+           {campus.CurrentStudents.map(student => {
              return (
-              <li key={currentStudent.id}>{currentStudent.fullName}</li>
+              <tr key={student.id}>
+                <td>{student.fullName}</td>
+                <td>{student.gpa}</td>
+                <td>{student.email}</td>
+              </tr>
              )
            })
            }
-           </ul>
+           </tbody>
+           </table>
            <Link to={`/${campus.name}/students`}><button type="submit">Edit Students</button></Link>
            </div>
          )}

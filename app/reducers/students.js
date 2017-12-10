@@ -31,6 +31,7 @@ export function addStudent (student) {
       .then(newStudent => {
         const action = createAddStudentAction(newStudent)
         dispatch(action)
+
       })
       .catch(err => console.error(err))
   }

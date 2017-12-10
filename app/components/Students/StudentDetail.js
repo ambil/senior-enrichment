@@ -16,8 +16,9 @@ export function StudentDetail (props) {
          return(
            <div key={student.id}>
            <h1>{student.fullName}</h1>
-           <p>{student.email}</p>
-           <p>{student.gpa}</p>
+           <h4>GPA: {student.gpa}</h4>
+           <h4>Campus: {student.campus.name}</h4>
+           <h4>Contact: {student.email}</h4>
            </div>
          )}
      })}

@@ -3,49 +3,62 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getStudents } from '../../reducers/students'
 import { getCampuses } from '../../reducers/campuses'
+import NewStudent from './NewStudent'
 
-export function EditStudents (props) {
+export function EditStudents(props) {
 
   const { submit, students, campuses } = props
   const currentCampus = props.match.params.name
 
-  return(
+  return (
     <div>
-     {campuses.map(campus => {
-       if(campus.name === currentCampus){
-         return(
-         campus.CurrentStudents.map(student => {
-           return(
-             <div>
-             <h1>{student.fullName}</h1>
-             <form>
-               <label>
-                First:
+      <h1>Edit Current Students:</h1>
+      {campuses.map(campus => {
+        if (campus.name === currentCampus) {
+          return (
+            campus.CurrentStudents.map(student => {
+              return (
+                <div>
+                  <h3>{student.fullName}</h3>
+                  <form>
+                    <label>
+                      First:
                 <input type="text" name="firstName" placeholder={student.firstName} />
-               </label>
-               <label>
-                Last:
+                    </label>
+                    <label>
+                      Last:
                 <input type="text" name="lastName" placeholder={student.lastName} />
-               </label>
-               <label>
-                 email:
-                 <input type="text" name="email" placeholder={student.email} />
-               </label>
-               <label>
-                 GPA:
-                 <input type="number" name="gpa" placeholder={student.gpa} />
-               </label>
-               <button>submit changes</button>
-             </form>
-             </div>
-           )
-         })
-         )
-       }
-     })}
+                    </label>
+                    <label>
+                      email:
+                 <input type="email" name="email" placeholder={student.email} />
+                    </label>
+                    <label>
+                      GPA:
+                 <input type="number" min="0" max="4" name="gpa" placeholder={student.gpa} />
+                    </label>
+                    <label>
+                      Campus:
+                 <select name="currentCampus">
+                        {campuses.map(campus => {
+                          return (
+                            <option value={campus.id} key={campus.id} defaultValue={campus.name}>{campus.name}</option>
+                          )
+                        })}
+                      </select>
+                    </label>
+                    <button>submit changes</button>
+                  </form>
+                </div>
+              )
+            })
+          )
+        }
+      })}
+      <h5>Add New Student: </h5>
+      <NewStudent />
     </div>
   )
-
 }
 
 const mapState = state => {
