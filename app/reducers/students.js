@@ -7,10 +7,10 @@ const UPDATE_STUDENT = 'UPDATE_STUDENT'
 const REMOVE_STUDENT = 'REMOVE_STUDENT'
 
 //Action Creators
-const createGetStudentAction = student => ({ type: GET_STUDENT, student })
+export const createGetStudentAction = student => ({ type: GET_STUDENT, student })
 export const createAddStudentAction = student => ({ type: ADD_STUDENT, student });
-const createUpdateStudentAction = student => ({ type: UPDATE_STUDENT, student });
-const createRemoveStudentAction = student => ({ type: REMOVE_STUDENT, student })
+export const createUpdateStudentAction = student => ({ type: UPDATE_STUDENT, student });
+export const createRemoveStudentAction = student => ({ type: REMOVE_STUDENT, student })
 
 //Dispatchers
 export function getStudents () {
@@ -37,6 +37,13 @@ export function addStudent (student) {
   }
 }
 
+export function removeStudent (studentId) {
+  return function thunk (dispatch) {
+    return axios.delete(`/api/students/${studentId}`)
+      .catch(err => console.error(`Could not remove: ${studentId}`, err))
+  }
+}
+
 //Reducer
 export default function reducer (students = [], action) {
   switch (action.type) {
@@ -51,8 +58,8 @@ export default function reducer (students = [], action) {
     //   return student.map(student => (action.student.id === student.id ? action.student : student
     //   ));
 
-    // case REMOVE_STUDENT:
-    //   return student.filter(student => student.id !== action.id);
+    case REMOVE_STUDENT:
+      return students.filter(students => students.id !== action.id);
 
     default:
       return students

@@ -19,6 +19,13 @@ export function StudentDetail (props) {
            <h4>GPA: {student.gpa}</h4>
            <h4>Campus: {student.campus.name}</h4>
            <h4>Contact: {student.email}</h4>
+          {campuses.map(campus => {
+            if(campus.name === student.campus.name){
+              return(
+                <Link key={campus.id} to={`/${campus.name}`}><button>Back to {campus.name}</button></Link>
+              )
+            }
+          })}
            </div>
          )}
      })}

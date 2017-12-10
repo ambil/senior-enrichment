@@ -1,13 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { getStudents } from '../../reducers/students'
+import { getStudents, removeStudent } from '../../reducers/students'
 import { getCampuses } from '../../reducers/campuses'
 import NewStudent from './NewStudent'
 
 export function EditStudents(props) {
 
-  const { submit, students, campuses } = props
+  const { submit, removeStudent, students, campuses } = props
   const currentCampus = props.match.params.name
 
   return (
@@ -20,7 +20,7 @@ export function EditStudents(props) {
               return (
                 <div>
                   <h3>{student.fullName}</h3>
-                  <form>
+                  <form onSubmit={submit}>
                     <label>
                       First:
                 <input type="text" name="firstName" placeholder={student.firstName} />
@@ -46,10 +46,10 @@ export function EditStudents(props) {
                           )
                         })}
                       </select>
-                      <label for="delete">delete:</label>
-                      <input type="checkbox" name="delete" value={campus.id} />
+                      <label>delete:</label>
+                      <input type="checkbox" name="delete" value={student.id} />
                     </label>
-                    <button>submit changes</button>
+                    <button type="submit">submit changes</button>
                   </form>
                 </div>
               )
@@ -72,6 +72,10 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
+    submit: function (e) {
+      e.preventDefault()
+      dispatch(removeStudent(e.target.delete.value))
+    },
     getStudents: dispatch(getStudents()),
     getCampuses: dispatch(getCampuses())
   }

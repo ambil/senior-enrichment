@@ -20,6 +20,21 @@ apiRouter.get('/campuses/:id', (req, res) => {
 	.catch(err => console.error(err))
 })
 
+
+apiRouter.post('/campuses', (req, res, next) => {
+	Campuses.create(req.body)
+	.then(campus => res.json(campus))
+	.catch(next)
+})
+
+apiRouter.delete('/campuses/:id', function(req, res, next) {
+	const id = req.params.id
+
+	Campuses.destroy({where: {id}})
+		.then(() => res.status(204).end())
+		.catch(next)
+})
+
 apiRouter.get('/students', (req, res) => {
 	Students.findAll({
 		include: [
@@ -42,17 +57,11 @@ apiRouter.post('/students', (req, res, next) => {
 	.catch(next)
 })
 
-apiRouter.post('/campuses', (req, res, next) => {
-	Campuses.create(req.body)
-	.then(campus => res.json(campus))
-	.catch(next)
-})
-
-apiRouter.delete('/campuses/:id', function(req, res, next) {
+apiRouter.delete('/students/:id', function(req, res, next) {
 	const id = req.params.id
 
-	Campuses.destroy({where: {id}})
-		.then(() => res.state(204).end())
+	Students.destroy({where: {id}})
+		.then(() => res.status(204).end())
 		.catch(next)
 })
 

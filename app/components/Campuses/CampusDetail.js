@@ -33,6 +33,7 @@ export function CampusDetail (props) {
                 <td>{student.fullName}</td>
                 <td>{student.gpa}</td>
                 <td>{student.email}</td>
+                <td><Link to={`/${student.id}`}><button>view profile</button></Link></td>
               </tr>
              )
            })
