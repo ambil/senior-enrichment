@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { getStudents, removeStudent } from '../../reducers/students'
-import { getCampuses, updateStudent } from '../../reducers/campuses'
+import { getStudents, removeStudent, updateStudent } from '../../reducers/students'
+import { getCampuses } from '../../reducers/campuses'
 import NewStudent from './NewStudent'
 
 export function EditStudents(props) {
@@ -31,11 +31,11 @@ export function EditStudents(props) {
                     </label>
                     <label>
                       email:
-                 <input type="email" name="email" placeholder={student.email} defaultValue={student.email} />
+                 <input type="email" name="email" placeholder={student.email} defaultValue="info@gmail.com" />
                     </label>
                     <label>
                       GPA:
-                 <input type="number" min="0" max="4" name="gpa" placeholder={student.gpa} defaultValue={student.gpa} />
+                 <input type="number" min="0" max="4" name="gpa" placeholder={student.gpa} defaultValue="0" />
                     </label>
                     <label>
                       Campus:
@@ -47,7 +47,7 @@ export function EditStudents(props) {
                         })}
                       </select>
                       <label>delete:</label>
-                      <input type="checkbox" name="delete" value={student.id} />
+                      <input name="delete" type="checkbox" defaultChecked={false} value={student.id}/>
                     </label>
                     <button type="submit">submit changes</button>
                     <Link to={`/${student.id}`}><button>view profile</button></Link>
@@ -66,6 +66,8 @@ export function EditStudents(props) {
   )
 }
 
+
+
 const mapState = state => {
   return {
     students: state.students,
@@ -77,14 +79,22 @@ const mapDispatch = dispatch => {
   return {
     submit: function (e) {
       e.preventDefault()
+      console.log("campus", e.target.currentCampus.value)
+      const selectedStudent = +e.target.delete.value
       const studentInfo = {
         firstName: e.target.firstName.value,
         lastName: e.target.lastName.value,
-        email: e.target.email.value,
-        gpa: e.target.gpa.value,
-        campus: e.target.currentCampus.value
+        email: e.target.email.value || e.target.email.defaultValue,
+        gpa: e.target.gpa.value || e.target.email.defaultValue,
+        campusId: e.target.currentCampus.value
       }
-      dispatch(removeStudent(e.target.delete.value))
+      if(e.target.delete.checked === true){
+        dispatch(removeStudent(selectedStudent))
+        dispatch(getCampuses())
+      }
+
+      dispatch(updateStudent(selectedStudent, studentInfo))
+
     },
     getStudents: dispatch(getStudents()),
     getCampuses: dispatch(getCampuses())

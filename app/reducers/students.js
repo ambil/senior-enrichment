@@ -37,11 +37,11 @@ export function addStudent (student) {
   }
 }
 
-export function updateStudent (studentId) {
+export function updateStudent (studentId, student) {
   return function thunk (dispatch) {
-    return axios.put(`/api/students/${studentId}`)
+    return axios.put(`/api/students/${studentId}`, student)
       .then(res => dispatch(createUpdateStudentAction(res.data)))
-      .catch(err => console.error(`Student update for studentID: ${studentId} unsuccessful`, err))
+      .catch(err => console.error(`Update for studentID: ${studentId} unsuccessful`, err))
   }
 }
 
@@ -63,8 +63,9 @@ export default function reducer (students = [], action) {
       return [...students, action.student];
 
     case UPDATE_STUDENT:
-      return student.map(student => (action.student.id === student.id ? action.student : student
-      ));
+      return students.map(student => (
+      action.id === student.id ? action.student : student
+    ));
 
     case REMOVE_STUDENT:
       return students.filter(student => student.id !== action.id);

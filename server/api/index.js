@@ -71,10 +71,11 @@ apiRouter.post('/students', (req, res, next) => {
 })
 
 apiRouter.put('/students/:id', (req, res, next) => {
-	const studentId = req.params.studentId
+	const studentId = req.params.id
 
 	Students.findById(studentId)
 		.then(student => student.update(req.body))
+		.then(updatedStudent => res.json(res.body))
 		.catch(next)
 })
 
