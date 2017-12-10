@@ -3,11 +3,13 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getStudents } from '../../reducers/students'
 import { getCampuses } from '../../reducers/campuses'
+import EditCampus from './EditCampus'
 
 export function CampusDetail (props) {
 
   const { students, campuses } = props
   const currentCampus = props.match.params.name
+  console.log('campuses state', campuses)
 
   return(
     <div>
@@ -18,7 +20,7 @@ export function CampusDetail (props) {
            <h1>{campus.name}</h1>
            <img src={campus.imageUrl} />
            <p>{campus.description}</p>
-           <Link to={`/${campus.name}/students`}><button type="submit">Edit Students</button></Link>
+           <Link to={`/campus/${campus.name}/students`}><button type="submit">Add/Edit Students</button></Link>
            <h2>Current Students:</h2>
            <table>
              <tbody>
@@ -26,6 +28,7 @@ export function CampusDetail (props) {
                  <th>Student</th>
                  <th>GPA</th>
                  <th>Contact</th>
+                 <th>Profile Link</th>
                </tr>
            {campus.CurrentStudents.map(student => {
              return (
@@ -40,13 +43,12 @@ export function CampusDetail (props) {
            }
            </tbody>
            </table>
-
            </div>
          )}
      })}
+     <EditCampus currentCampus={currentCampus}/>
     </div>
   )
-
 }
 
 const mapState = state => {

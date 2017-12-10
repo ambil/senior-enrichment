@@ -11,8 +11,7 @@ const createAddCampusAction = campus => ({ type: ADD_CAMPUS, campus });
 const createUpdateCampusAction = campus => ({ type: UPDATE_CAMPUS, campus });
 const createRemoveCampusAction = campus => ({ type: REMOVE_CAMPUS, campus })
 
-//Dispatchers
-
+//Thunks
 export function getCampuses () {
   return function thunk (dispatch) {
     return axios.get('/api/campuses')
@@ -36,6 +35,13 @@ export function addCampus (campus) {
   }
 }
 
+export function removeCampus (campusId) {
+  return function thunk (dispatch) {
+    return axios.delete(`/api/campuses/${campusId}`)
+      .catch(err => console.error(`Could not remove: ${campusId}`, err))
+  }
+}
+
 //Reducer
 export default function reducer (campuses = [], action) {
   switch (action.type) {
@@ -50,8 +56,8 @@ export default function reducer (campuses = [], action) {
     //   return campus.map(campus => (action.campus.id === campus.id ? action.campus : campus
     //   ));
 
-    // case REMOVE_CAMPUS:
-    //   return campus.filter(campus => campus.id !== action.id);
+    case REMOVE_CAMPUS:
+      return campuses.filter(campus => campus.id !== action.id);
 
     default:
       return campuses

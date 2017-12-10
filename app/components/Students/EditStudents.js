@@ -50,6 +50,7 @@ export function EditStudents(props) {
                       <input type="checkbox" name="delete" value={student.id} />
                     </label>
                     <button type="submit">submit changes</button>
+                    <Link to={`/${student.id}`}><button>view profile</button></Link>
                   </form>
                 </div>
               )
@@ -59,6 +60,8 @@ export function EditStudents(props) {
       })}
       <h5>Add New Student: </h5>
       <NewStudent />
+      <br />
+      <Link to={`/campus/${currentCampus}`}><button>Back to {currentCampus}</button></Link>
     </div>
   )
 }

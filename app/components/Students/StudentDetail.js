@@ -22,7 +22,10 @@ export function StudentDetail (props) {
           {campuses.map(campus => {
             if(campus.name === student.campus.name){
               return(
-                <Link key={campus.id} to={`/${campus.name}`}><button>Back to {campus.name}</button></Link>
+                <div key={campus.id}>
+                <Link to={`/campus/${campus.name}`}><button>View {campus.name} Page</button></Link>
+                <Link to={`/campus/${campus.name}/students`}><button type="submit">Add/Edit Students for {campus.name}</button></Link>
+                </div>
               )
             }
           })}

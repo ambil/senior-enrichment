@@ -4,6 +4,7 @@ const app = require('../index')
 const Students = require('../db/models/Students')
 const Campuses = require('../db/models/Campuses')
 
+//Campus Routes
 apiRouter.get('/campuses', (req, res) => {
 	Campuses.findAll({
 		include: [
@@ -20,7 +21,6 @@ apiRouter.get('/campuses/:id', (req, res) => {
 	.catch(err => console.error(err))
 })
 
-
 apiRouter.post('/campuses', (req, res, next) => {
 	Campuses.create(req.body)
 	.then(campus => res.json(campus))
@@ -30,11 +30,16 @@ apiRouter.post('/campuses', (req, res, next) => {
 apiRouter.delete('/campuses/:id', function(req, res, next) {
 	const id = req.params.id
 
+	Students.destroy({where: {campusId: id}})
+		.catch(err => console.error(err))
+
 	Campuses.destroy({where: {id}})
 		.then(() => res.status(204).end())
 		.catch(next)
 })
 
+
+//Student Routes
 apiRouter.get('/students', (req, res) => {
 	Students.findAll({
 		include: [

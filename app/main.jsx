@@ -20,14 +20,13 @@ render (
         <Route exact path='/' component={AllCampuses} />
         <Route exact path='/students' component={AllStudents} />
         <Route exact path='/addstudent' component={NewStudent} />
-        <Route exact path='/:name' component={CampusDetail} />
-        <Route path='/:name/students' component={EditStudents} />
-        <Route path='/:id' component={StudentDetail} />
+        <Route exact path='/:id' component={StudentDetail} />
+        <Route exact path='/campus/:name' component={CampusDetail} />
+        <Route exact path='/campus/:name/students' component={EditStudents} />
+
       </div>
     </Router>
   </Provider>,
   document.getElementById('main')
 )
-
-
 

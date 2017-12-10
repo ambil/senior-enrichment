@@ -18,10 +18,6 @@ export function NewCampusEntry(props) {
         Description:
         <input type="text" name="description" placeholder="What's the place like?" required />
       </label>
-      {/* <label>
-        Image URL:
-        <input type="text" name="imageUrl" placeholder="image url" />
-      </label> */}
       <button type="submit">Submit</button>
     </form>
   )
@@ -43,8 +39,10 @@ const mapDispatch = dispatch => {
         description: e.target.description.value
       }
       dispatch(addCampus(campus))
+      dispatch(getCampuses())
     },
     getStudents: dispatch(getStudents()),
+    getCampuses: dispatch(getCampuses())
   }
 }
 

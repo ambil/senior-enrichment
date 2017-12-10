@@ -12,7 +12,7 @@ export const createAddStudentAction = student => ({ type: ADD_STUDENT, student }
 export const createUpdateStudentAction = student => ({ type: UPDATE_STUDENT, student });
 export const createRemoveStudentAction = student => ({ type: REMOVE_STUDENT, student })
 
-//Dispatchers
+//Thunks
 export function getStudents () {
   return function thunk (dispatch) {
     return axios.get('/api/students')
@@ -59,7 +59,7 @@ export default function reducer (students = [], action) {
     //   ));
 
     case REMOVE_STUDENT:
-      return students.filter(students => students.id !== action.id);
+      return students.filter(student => student.id !== action.id);
 
     default:
       return students
