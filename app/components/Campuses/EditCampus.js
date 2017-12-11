@@ -19,7 +19,7 @@ export function EditCampus(props) {
           <div key={campus.id}>
           <label>
             Change Name:
-            <input type="text" name="name" placeholder={campus.name} defaultValue={campus.name} require/>
+            <input type="text" name="name" placeholder={campus.name} defaultValue={campus.name} required />
           </label>
           <label>
             Change Description:
@@ -62,10 +62,9 @@ const mapDispatch = dispatch => {
       if(e.target.delete.checked === true){
         dispatch(removeCampus(campusId))
         dispatch(getCampuses())
+      } else {
+        dispatch(updateCampus(campusId, campusInfo))
       }
-
-      dispatch(updateCampus(campusId, campusInfo))
-
     },
     getStudents: dispatch(getStudents()),
     getCampuses: dispatch(getCampuses())

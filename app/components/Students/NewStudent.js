@@ -57,6 +57,7 @@ const mapDispatch = dispatch => {
         campusId: e.target.currentCampus.value
       }
       dispatch(addStudent(student))
+      dispatch(getStudents())
     },
     getStudents: dispatch(getStudents()),
     getCampuses: dispatch(getCampuses())

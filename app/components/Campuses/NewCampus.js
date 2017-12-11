@@ -39,10 +39,9 @@ const mapDispatch = dispatch => {
         description: e.target.description.value
       }
       dispatch(addCampus(campus))
-      dispatch(getCampuses())
     },
     getStudents: dispatch(getStudents()),
-    // getCampuses: dispatch(getCampuses())
+    getCampuses: dispatch(getCampuses())
   }
 }
 

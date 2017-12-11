@@ -31,11 +31,11 @@ export function EditStudents(props) {
                     </label>
                     <label>
                       email:
-                 <input type="email" name="email" placeholder={student.email} defaultValue="default@school.com" />
+                 <input type="email" name="email" placeholder={student.email} defaultValue={student.email} required />
                     </label>
                     <label>
                       GPA:
-                 <input type="number" min="0" max="4" name="gpa" placeholder={student.gpa} defaultValue={student.gpa} />
+                 <input type="number" min="0" max="4" name="gpa" placeholder={student.gpa} defaultValue={student.gpa} required />
                     </label>
                     <label>
                       Campus:
@@ -81,20 +81,19 @@ const mapDispatch = dispatch => {
       const studentInfo = {
         firstName: e.target.firstName.value,
         lastName: e.target.lastName.value,
-        email: e.target.email.value || e.target.email.defaultValue,
-        gpa: e.target.gpa.value || e.target.email.defaultValue,
+        email: e.target.email.value,
+        gpa: e.target.gpa.value,
         campusId: e.target.currentCampus.value
       }
       if(e.target.delete.checked === true){
         dispatch(removeStudent(selectedStudent))
         dispatch(getCampuses())
+      } else {
+        dispatch(updateStudent(selectedStudent, studentInfo))
       }
-
-      dispatch(updateStudent(selectedStudent, studentInfo))
-
     },
-    getStudents: dispatch(getStudents()),
-    getCampuses: dispatch(getCampuses())
+    getCampuses: dispatch(getCampuses()),
+    getStudents: dispatch(getStudents())
   }
 }
 
