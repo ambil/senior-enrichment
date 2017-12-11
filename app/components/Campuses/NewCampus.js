@@ -42,7 +42,7 @@ const mapDispatch = dispatch => {
       dispatch(getCampuses())
     },
     getStudents: dispatch(getStudents()),
-    getCampuses: dispatch(getCampuses())
+    // getCampuses: dispatch(getCampuses())
   }
 }
 

@@ -19,11 +19,11 @@ export function EditCampus(props) {
           <div key={campus.id}>
           <label>
             Change Name:
-            <input type="text" name="name" placeholder={campus.name} defaultValue={campus.name}/>
+            <input type="text" name="name" placeholder={campus.name} defaultValue={campus.name} require/>
           </label>
           <label>
             Change Description:
-            <input type="text" name="description" placeholder={campus.description} />
+            <input type="text" name="description" defaultValue={campus.description} />
           </label>
           <label>
             Change Image URL:

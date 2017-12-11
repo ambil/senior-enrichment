@@ -35,7 +35,7 @@ export function EditStudents(props) {
                     </label>
                     <label>
                       GPA:
-                 <input type="number" min="0" max="4" name="gpa" placeholder={student.gpa} defaultValue="0" />
+                 <input type="number" min="0" max="4" name="gpa" placeholder={student.gpa} defaultValue={student.gpa} />
                     </label>
                     <label>
                       Campus:
