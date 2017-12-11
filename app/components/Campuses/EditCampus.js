@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
 import { getStudents } from '../../reducers/students'
-import { getCampuses, removeCampus } from '../../reducers/campuses'
+import { getCampuses, removeCampus, updateCampus } from '../../reducers/campuses'
 import { currentCampus } from './CampusDetail'
 
 export function EditCampus(props) {
@@ -19,7 +19,7 @@ export function EditCampus(props) {
           <div key={campus.id}>
           <label>
             Change Name:
-            <input type="text" name="name" placeholder={campus.name} />
+            <input type="text" name="name" placeholder={campus.name} defaultValue={campus.name}/>
           </label>
           <label>
             Change Description:
@@ -27,10 +27,10 @@ export function EditCampus(props) {
           </label>
           <label>
             Change Image URL:
-            <input type="text" name="imageUrl" placeholder={campus.imageUrl} />
+            <input type="text" name="imageUrl" defaultValue="https://www.greatvaluecolleges.net/wp-content/uploads/2016/01/university-washington-cheapest-colleges-most-beautiful-college-campuses-1024x626.jpg"/>
           </label>
           <label>Delete:
-            <input type="checkbox" name="delete" value={campus.id} />
+            <input type="checkbox" name="delete" defaultChecked={false} value={campus.id} />
           </label>
           <button type="submit">Submit Changes</button>
           </div>
@@ -53,13 +53,22 @@ const mapDispatch = dispatch => {
   return {
     submit: function (e) {
       e.preventDefault()
-      return(
-        dispatch(removeCampus(e.target.delete.value)),
+      const campusId = +e.target.delete.value
+      const campusInfo = {
+        name: e.target.name.value,
+        imageUrl: e.target.imageUrl.value,
+        description: e.target.description.value
+      }
+      if(e.target.delete.checked === true){
+        dispatch(removeCampus(campusId))
         dispatch(getCampuses())
-      )
+      }
+
+      dispatch(updateCampus(campusId, campusInfo))
+
     },
     getStudents: dispatch(getStudents()),
-    // getCampuses: dispatch(getCampuses())
+    getCampuses: dispatch(getCampuses())
   }
 }
 

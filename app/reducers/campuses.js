@@ -19,7 +19,7 @@ export function getCampuses () {
       .then((campuses) => {
         dispatch(createGetCampusAction(campuses))
       })
-      .catch(err => console.err(err))
+      .catch(err => console.error(err))
   }
 }
 
@@ -32,6 +32,14 @@ export function addCampus (campus) {
         dispatch(action)
       })
       .catch(err => console.error(err))
+  }
+}
+
+export function updateCampus (campusId, campus) {
+  return function thunk (dispatch) {
+    return axios.put(`/api/campuses/${campusId}`, campus)
+      .then(res => dispatch(createUpdateCampusAction(res.data)))
+      .catch(err => console.error(`Update for campusID: ${campusId} unsuccessful`, err))
   }
 }
 
@@ -53,7 +61,7 @@ export default function reducer (campuses = [], action) {
       return [...campuses, action.campus];
 
     case UPDATE_CAMPUS:
-      return campus.map(campus => (action.campus.id === campus.id ? action.campus : campus
+      return campuses.map(campus => (action.id === campus.id ? action.campus : campus
       ));
 
     case REMOVE_CAMPUS:

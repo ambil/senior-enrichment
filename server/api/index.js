@@ -27,11 +27,12 @@ apiRouter.post('/campuses', (req, res, next) => {
 	.catch(next)
 })
 
-apiRouter.put('/campuses/:id', (req, res, next)=> {
-	const campusId = req.params.studentId
+apiRouter.put('/campuses/:id', (req, res, next) => {
+	const campusId = req.params.id
 
-	Students.findById(campusId)
+	Campuses.findById(campusId)
 		.then(campus => campus.update(req.body))
+		.then(updatedCampus => res.json(res.body))
 		.catch(next)
 })
 

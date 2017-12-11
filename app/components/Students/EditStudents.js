@@ -31,7 +31,7 @@ export function EditStudents(props) {
                     </label>
                     <label>
                       email:
-                 <input type="email" name="email" placeholder={student.email} defaultValue="info@gmail.com" />
+                 <input type="email" name="email" placeholder={student.email} defaultValue="default@school.com" />
                     </label>
                     <label>
                       GPA:
@@ -66,8 +66,6 @@ export function EditStudents(props) {
   )
 }
 
-
-
 const mapState = state => {
   return {
     students: state.students,
@@ -79,7 +77,6 @@ const mapDispatch = dispatch => {
   return {
     submit: function (e) {
       e.preventDefault()
-      console.log("campus", e.target.currentCampus.value)
       const selectedStudent = +e.target.delete.value
       const studentInfo = {
         firstName: e.target.firstName.value,
